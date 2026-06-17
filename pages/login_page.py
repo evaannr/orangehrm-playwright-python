@@ -33,3 +33,13 @@ class LoginPage:
             "button",
             name="Login"
         ).click()
+
+    def is_invalid_credentials_displayed(self):
+        locator = self.page.get_by_text("Invalid credentials")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    def is_required_message_displayed(self):
+        locator = self.page.get_by_text("Required")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
