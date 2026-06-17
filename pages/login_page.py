@@ -1,0 +1,35 @@
+from playwright.sync_api import Page
+
+class LoginPage:
+
+    def __init__(self, page):
+        self.page = page
+
+    def open(self):
+        self.page.goto(
+            "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+            timeout=120000
+            
+        )
+
+
+    def login(self, username, password):
+        self.page.get_by_role(
+            "textbox",
+            name="Username"
+        ).wait_for(timeout=10000)
+
+        self.page.get_by_role(
+            "textbox",
+            name="Username"
+        ).fill(username)
+
+        self.page.get_by_role(
+            "textbox",
+            name="Password"
+        ).fill(password)
+
+        self.page.get_by_role(
+            "button",
+            name="Login"
+        ).click()
