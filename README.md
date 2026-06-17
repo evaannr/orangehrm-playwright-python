@@ -1,64 +1,74 @@
 # OrangeHRM Playwright Testing
 
-Automation testing project untuk OrangeHRM menggunakan Playwright dan pytest.
+Automated testing for OrangeHRM using Playwright with Page Object Model (POM) design pattern.
+
+The project covers positive and negative login scenarios and generates execution reports using Allure.
+
+## Test Coverage
+
+### Login Test Cases
+- ✅ Valid Login
+- ✅ Invalid Username
+- ✅ Invalid Password
+- ✅ Empty Username
+- ✅ Empty Password
+- ✅ Empty Username and Password
+
+> **Note:** Test coverage is continuously being expanded. Additional modules and scenarios will be added in future updates.
+
+## Tech Stack
+- Python
+- Playwright
+- Pytest
+- Allure Report
 
 ## Project Structure
-
-```
-test_orangehrm_playwright/
-├── pages/              # Page Object Model classes
-├── tests/              # Test cases
-├── utils/              # Utility functions and helpers
-├── screenshots/        # Screenshot captures during test execution
-├── reports/            # Test reports and results
-├── conftest.py         # Pytest configuration and fixtures
-├── pytest.ini          # Pytest settings
-├── requirements.txt    # Python dependencies
-└── README.md           # This file
+```text
+pages/
+tests/
+screenshots/
+conftest.py
+pytest.ini
+requirements.txt
 ```
 
-## Setup
+## Run Test
 
-### 1. Install Dependencies
+Run all test cases:
+
 ```bash
-pip install -r requirements.txt
+pytest tests -v
 ```
 
-### 2. Install Playwright Browsers
+Run a specific test:
+
 ```bash
-playwright install
+pytest tests/login_test.py -v
 ```
 
-## Running Tests
+## Generate Allure Report
 
-### Run all tests
+Generate test results:
+
 ```bash
-pytest
+pytest tests -v --alluredir=allure-results
 ```
 
-### Run specific test
+Generate report:
+
 ```bash
-pytest tests/test_login.py
+allure generate allure-results --clean -o allure-report
 ```
 
-### Run with specific markers
+Open report:
+
 ```bash
-pytest -m smoke
-pytest -m regression
+allure open allure-report
 ```
 
-### Run with verbose output
-```bash
-pytest -v
-```
-
-### Generate HTML report
-```bash
-pytest --html=reports/report.html --self-contained-html
-```
-
-## Project Details
-
-- **Framework**: Playwright (async)
-- **Test Runner**: pytest
-- **Language**: Python
+## Reporting
+Allure report includes:
+- Test execution summary
+- Pass/Fail status
+- Execution duration
+- Screenshot attachments
