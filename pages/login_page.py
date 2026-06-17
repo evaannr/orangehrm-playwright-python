@@ -43,3 +43,10 @@ class LoginPage:
         locator = self.page.get_by_text("Required")
         locator.wait_for(timeout=10000)
         return locator.is_visible()
+    
+    def are_both_required_messages_displayed(self):
+        locator1 = self.page.get_by_text("Required").first
+        locator2 = self.page.get_by_text("Required").nth(1)
+        locator1.wait_for(timeout=10000)
+        locator2.wait_for(timeout=10000)
+        return locator1.is_visible() and locator2.is_visible()
