@@ -2,13 +2,11 @@ from playwright.sync_api import Page
 
 class DashboardPage:
 
-    def __init__(self, page):
+    def __init__(self, page: Page):
         self.page = page
 
     def logout(self):
-        self.page.locator("span").filter(
-            has_text="manda user"
-        ).click()
+        self.page.locator(".oxd-topbar-header-userarea li").click()
 
         self.page.get_by_role(
             "menuitem",
