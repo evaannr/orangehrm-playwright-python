@@ -16,8 +16,8 @@ The project covers positive and negative login scenarios and generates execution
 
 ### Employee Test Cases
 - ✅ Search employee by name
-- Search employee by id
-- Search employee by job title
+- ✅ Search employee by id
+- ✅ Search employee by job title
 - Search not-exist employee
 - Search with blank criteria
 - Edit employee

@@ -1,4 +1,7 @@
+import re
 from playwright.sync_api import Page
+from conftest import page
+
 
 class PimPage:
 
@@ -20,6 +23,11 @@ class PimPage:
         self.page.get_by_role("textbox").nth(2).fill(employee_id)
         self.page.get_by_role("button", name="Search").click()
     
+    def search_employee_by_job_title(self, employee_jobtitle):
+        self.page.locator("div").filter(has_text=re.compile(r"^Job Title-- Select --$")).first.click()
+        self.page.get_by_text(employee_jobtitle).click()
+        self.page.get_by_role("button", name="Search").click()
+    
     def is_employee_name_displayed(self, employee_name):
         locator = self.page.get_by_text(employee_name)
         locator.wait_for(timeout=10000)
@@ -29,3 +37,11 @@ class PimPage:
         locator = self.page.get_by_text(employee_id)
         locator.wait_for(timeout=10000)
         return locator.is_visible()
+    
+    def is_employee_job_title_displayed(self, employee_jobtitle):
+        locator = self.page.get_by_text(employee_jobtitle)
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    
+
