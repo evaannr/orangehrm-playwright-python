@@ -18,7 +18,7 @@ The project covers positive and negative login scenarios and generates execution
 - ✅ Search employee by name
 - ✅ Search employee by id
 - ✅ Search employee by job title
-- Search not-exist employee
+- ✅ Search not-exist employee
 - Search with blank criteria
 - Edit employee
 - Add employee

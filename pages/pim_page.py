@@ -42,6 +42,11 @@ class PimPage:
         locator = self.page.get_by_text(employee_jobtitle)
         locator.wait_for(timeout=10000)
         return locator.is_visible()
+
+    def is_no_records_found_displayed(self):
+        locator = self.page.locator("#oxd-toaster_1").get_by_text("No Records Found")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
     
     
 
