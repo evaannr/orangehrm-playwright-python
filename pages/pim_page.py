@@ -48,5 +48,10 @@ class PimPage:
         locator.wait_for(timeout=10000)
         return locator.is_visible()
     
+    def is_table_displayed(self):
+        locator = self.page.get_by_role("row", name=" Id  First (& Middle) Name")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
     
 
