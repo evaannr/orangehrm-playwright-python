@@ -53,5 +53,31 @@ class PimPage:
         locator.wait_for(timeout=10000)
         return locator.is_visible()
     
+    def open_employee_details(self):
+        self.page.get_by_role("button").filter(has_text=re.compile(r"^$")).nth(3).click()
+        
     
+    def edit_employee_details(self, employee_first_name, employee_last_name, employee_id):
+        self.page.get_by_role("textbox", name="First Name").click()
+        self.page.get_by_role("textbox", name="First Name").fill(employee_first_name)
+        self.page.get_by_role("textbox", name="Last Name").click()
+        self.page.get_by_role("textbox", name="Last Name").fill(employee_last_name)
+        self.page.get_by_role("textbox").nth(4).click()
+        self.page.get_by_role("textbox").nth(4).fill(employee_id)
+        
+    
+    def save_employee_details(self):
+        self.page.locator("form").filter(has_text="Employee Full NameEmployee").get_by_role("button").click()
+        
+    
+    def is_success_message_displayed(self):
+        locator = self.page.get_by_text("Successfully Updated")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    def is_employee_details_updated(self, employee_first_name, employee_last_name):
+        row = self.page.get_by_role("row", name=re.compile(f".*{employee_first_name}.*{employee_last_name}.*"))
+        row.wait_for(timeout=10000)
+        return row.is_visible()
+        
 
