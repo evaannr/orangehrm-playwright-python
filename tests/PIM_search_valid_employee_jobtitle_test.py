@@ -5,7 +5,7 @@ def test_search_valid_employee_jobtitle(page):
     login = LoginPage(page)
     pim = PimPage(page)
 
-    employee_jobtitle = "Software Engineer"
+    search_employee_jobtitle = "Software Engineer"
 
     login.open()
     login.login("Admin", "admin123")
@@ -15,8 +15,8 @@ def test_search_valid_employee_jobtitle(page):
 
     pim.open_pim()
     pim.open_employee_list()
-    pim.search_employee_by_job_title(employee_jobtitle)
-    assert pim.is_employee_job_title_displayed(employee_jobtitle)
+    pim.search_employee_by_job_title(search_employee_jobtitle)
+    assert pim.is_employee_job_title_displayed(search_employee_jobtitle)
 
 
 

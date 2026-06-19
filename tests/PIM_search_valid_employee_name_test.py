@@ -5,7 +5,7 @@ def test_search_valid_employee_name(page):
     login = LoginPage(page)
     pim = PimPage(page)
 
-    employee_name = "Amelia"
+    search_employee_name = "Amelia"
 
     login.open()
     login.login("Admin", "admin123")
@@ -15,8 +15,8 @@ def test_search_valid_employee_name(page):
 
     pim.open_pim()
     pim.open_employee_list()
-    pim.search_employee_by_name(employee_name)
-    assert pim.is_employee_name_displayed(employee_name)
+    pim.search_employee_by_name(search_employee_name)
+    assert pim.is_employee_name_displayed(search_employee_name)
 
 
 

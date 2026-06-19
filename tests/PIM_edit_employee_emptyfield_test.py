@@ -5,9 +5,9 @@ def test_edit_emptyfield_employee(page):
     login = LoginPage(page)
     pim = PimPage(page)
 
-    employee_first_name = ""
-    employee_last_name = "testedd222"
-    employee_id = "0889"
+    update_employee_first_name = ""
+    update_employee_last_name = "testedd222"
+    update_employee_id = "0889"
 
     login.open()
     login.login("Admin", "admin123")
@@ -18,7 +18,7 @@ def test_edit_emptyfield_employee(page):
     pim.open_pim()
     pim.open_employee_list()
     pim.open_employee_details()
-    pim.edit_employee_details(employee_first_name, employee_last_name, employee_id)
+    pim.edit_employee_details(update_employee_first_name, update_employee_last_name, update_employee_id)
     assert pim.is_required_empty_message_displayed()
    
 

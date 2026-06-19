@@ -5,7 +5,7 @@ def test_search_nonexistent_employee(page):
     login = LoginPage(page)
     pim = PimPage(page)
 
-    employee_name = "Bandot"
+    search_employee_name = "Bandot"
 
     login.open()
     login.login("Admin", "admin123")
@@ -15,7 +15,7 @@ def test_search_nonexistent_employee(page):
 
     pim.open_pim()
     pim.open_employee_list()
-    pim.search_employee_by_name(employee_name)
+    pim.search_employee_by_name(search_employee_name)
     assert pim.is_no_records_found_displayed()
 
 
