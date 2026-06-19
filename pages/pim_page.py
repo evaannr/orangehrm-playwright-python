@@ -79,5 +79,15 @@ class PimPage:
         row = self.page.get_by_role("row", name=re.compile(f".*{employee_first_name}.*{employee_last_name}.*"))
         row.wait_for(timeout=10000)
         return row.is_visible()
+    
+    def is_required_empty_message_displayed(self):
+        locator = self.page.get_by_text("Required", exact=True)
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    def is_not_excedeed_message_displayed(self):
+        locator = self.page.get_by_text("Should not exceed 30")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
         
 
