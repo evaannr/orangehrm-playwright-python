@@ -80,12 +80,12 @@ class PimPage:
         row.wait_for(timeout=10000)
         return row.is_visible()
     
-    def is_required_empty_message_displayed(self):
+    def is_required_message_displayed(self):
         locator = self.page.get_by_text("Required", exact=True)
         locator.wait_for(timeout=10000)
         return locator.is_visible()
     
-    def is_not_excedeed_message_displayed(self):
+    def is_exceeded_30_char_message_displayed(self):
         locator = self.page.get_by_text("Should not exceed 30")
         locator.wait_for(timeout=10000)
         return locator.is_visible()
@@ -109,7 +109,7 @@ class PimPage:
     def open_add_employee(self):
         self.page.get_by_role("link", name="Add Employee").click()
 
-    def fill_add_employee_form(self, employee_first_name, employee_middle_name, employee_last_name, employee_id, employee_username, employee_password):
+    def fill_add_employee_basic_info_form(self, employee_first_name, employee_middle_name, employee_last_name, employee_id):
         self.page.get_by_role("textbox", name="First Name").click()
         self.page.get_by_role("textbox", name="First Name").fill(employee_first_name)
         self.page.get_by_role("textbox", name="Middle Name").click()
@@ -118,14 +118,21 @@ class PimPage:
         self.page.get_by_role("textbox", name="Last Name").fill(employee_last_name)
         self.page.get_by_role("textbox").nth(4).click()
         self.page.get_by_role("textbox").nth(4).fill(employee_id)
+        
+
+    def enabled_create_login_details(self):
         self.page.locator(".oxd-switch-input").click()
+    
+    def fill_add_employee_login_details_form(self, employee_username, employee_password, employee_confirm_password=None):
+        if employee_confirm_password is None:
+            employee_confirm_password = employee_password
+
         self.page.get_by_role("textbox").nth(5).click()
         self.page.get_by_role("textbox").nth(5).fill(employee_username)
         self.page.locator(".oxd-radio-input").first.click()
         self.page.locator("input[type=\"password\"]").first.click()
         self.page.locator("input[type=\"password\"]").first.fill(employee_password)
-        self.page.locator("input[type=\"password\"]").nth(1).click()
-        self.page.locator("input[type=\"password\"]").nth(1).fill(employee_password)
+        
 
     def save_add_employee_form(self):
         self.page.get_by_role("button", name="Save").click()
@@ -140,6 +147,31 @@ class PimPage:
         row = self.page.get_by_role("row", name = re.compile(f".*{first_middle_name}.*{employee_last_name}.*"))
         row.wait_for(timeout=10000)
         return row.is_visible()
+    
+    def is_first_required_message_displayed(self):
+        locator = self.page.get_by_text("Required").first
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    def is_exceeded_40_char_message_displayed(self):
+        locator = self.page.get_by_text("Should not exceed 40")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    def is_less_7_char_message_displayed(self):
+        locator = self.page.get_by_text("Should have at least 7")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    def is_password_mismatch_message_displayed(self):
+        locator = self.page.get_by_text("Passwords do not match")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    def is_must_have_1_number_message_displayed(self):
+        locator = self.page.get_by_text("Your password must contain")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
     
         
 

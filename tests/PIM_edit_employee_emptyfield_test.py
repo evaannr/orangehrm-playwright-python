@@ -19,8 +19,8 @@ def test_edit_emptyfield_employee(page):
     pim.open_employee_list()
     pim.open_employee_details()
     pim.edit_employee_details(update_employee_first_name, update_employee_last_name, update_employee_id)
-    assert pim.is_required_empty_message_displayed()
-   
+    assert pim.is_edit_required_message_displayed()
+    
 
 
 

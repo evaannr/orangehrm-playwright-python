@@ -1,7 +1,7 @@
 from pages.login_page import LoginPage
 from pages.pim_page import PimPage
 
-def test_edit_not_excedeed_employee(page):
+def test_edit_name_exceeded_employee(page):
     login = LoginPage(page)
     pim = PimPage(page)
 
@@ -19,7 +19,7 @@ def test_edit_not_excedeed_employee(page):
     pim.open_employee_list()
     pim.open_employee_details()
     pim.edit_employee_details(update_employee_first_name, update_employee_last_name, update_employee_id)
-    assert pim.is_not_excedeed_message_displayed()
+    assert pim.is_exceeded_30_char_message_displayed()
     
 
 
