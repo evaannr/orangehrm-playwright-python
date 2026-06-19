@@ -70,7 +70,7 @@ class PimPage:
         self.page.locator("form").filter(has_text="Employee Full NameEmployee").get_by_role("button").click()
         
     
-    def is_success_message_displayed(self):
+    def is_success_updated_message_displayed(self):
         locator = self.page.get_by_text("Successfully Updated")
         locator.wait_for(timeout=10000)
         return locator.is_visible()
@@ -89,5 +89,22 @@ class PimPage:
         locator = self.page.get_by_text("Should not exceed 30")
         locator.wait_for(timeout=10000)
         return locator.is_visible()
+    
+    def delete_employee(self):
+        self.page.get_by_role("button").filter(has_text=re.compile(r"^$")).nth(4).click()
+
+    def is_delete_confirmation_displayed(self):
+        locator = self.page.get_by_text("The selected record will be")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
+    def confirm_delete_employee(self):
+        self.page.get_by_role("button", name=" Yes, Delete").click()
+
+    def is_success_delete_message_displayed(self):
+        locator = self.page.get_by_text("Successfully Deleted")
+        locator.wait_for(timeout=10000)
+        return locator.is_visible()
+    
         
 

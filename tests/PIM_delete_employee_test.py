@@ -1,13 +1,9 @@
 from pages.login_page import LoginPage
 from pages.pim_page import PimPage
 
-def test_edit_not_excedeed_employee(page):
+def test_delete_employee(page):
     login = LoginPage(page)
     pim = PimPage(page)
-
-    employee_first_name = "asbdndjkasdoandn300000nksdnsndnfijhewuhfjnjnjaw"
-    employee_last_name = "testedd222"
-    employee_id = "0889"
 
     login.open()
     login.login("Admin", "admin123")
@@ -17,12 +13,11 @@ def test_edit_not_excedeed_employee(page):
 
     pim.open_pim()
     pim.open_employee_list()
-    pim.open_employee_details()
-    pim.edit_employee_details(employee_first_name, employee_last_name, employee_id)
-    assert pim.is_not_excedeed_message_displayed()
+    pim.delete_employee()
+    assert pim.is_delete_confirmation_displayed()
+    pim.confirm_delete_employee()
+    assert pim.is_success_delete_message_displayed()
     
-
-
 
 
 

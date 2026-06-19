@@ -20,7 +20,7 @@ def test_edit_employee(page):
     pim.open_employee_details()
     pim.edit_employee_details(employee_first_name, employee_last_name, employee_id)
     pim.save_employee_details()
-    assert pim.is_success_message_displayed()
+    assert pim.is_success_updated_message_displayed()
     pim.open_employee_list()
     pim.search_employee_by_name(employee_first_name)
     assert pim.is_employee_details_updated(employee_first_name, employee_last_name)
